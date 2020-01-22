@@ -1,0 +1,8 @@
+psycopg2
+requests
+django
+django-b2
+# -e git+git@github-pyutil:pyutil/django-b2.git
+# -i https://test.pypi.org/simple/ django-b2
+# b2sdk
+# git+https://github.com/royendgel/django-backblazeb2-storage

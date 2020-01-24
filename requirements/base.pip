@@ -6,3 +6,5 @@ django-b2
 # -i https://test.pypi.org/simple/ django-b2
 # b2sdk
 # git+https://github.com/royendgel/django-backblazeb2-storage
+
+colorlog

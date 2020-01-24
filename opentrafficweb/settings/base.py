@@ -137,3 +137,39 @@ B2_BUCKET_NAME = os.environ.get('B2_BUCKET_NAME') or config.get('b2', 'B2_BUCKET
 #BACKBLAZEB2_BUCKET_ID = 'xxxxxxxxxxxxxxxxxxxxxxxx'
 #BACKBLAZEB2_MAX_RETRIES = 3
 #BACKBLAZEB2_BUCKET_PRIVATE = False
+
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'filters': {
+    },
+    'formatters': {
+        'colored': {
+            '()': 'colorlog.ColoredFormatter',  # colored output
+
+            # --> %(log_color)s is very important, that's what colors the line
+            'format': '%(log_color)s[%(levelname)s] %(asctime)s :: %(message)s'
+        },
+    },
+    'handlers': {
+        'console': {
+            'level': 'DEBUG',
+            'class': 'colorlog.StreamHandler',
+            'formatter': 'colored',
+        },
+        'file': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'filename': '/var/log/opentrafficweb/django.log',   # changed !!!!!!!!
+            'formatter': 'colored',
+        },
+    },
+    'loggers': {
+        '': {
+            'handlers': ['console', 'file'],
+            'level': 'DEBUG',
+            'propagate': False,
+        },
+    }
+}

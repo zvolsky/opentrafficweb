@@ -162,7 +162,7 @@ LOGGING = {
         'file': {
             'level': 'DEBUG',
             'class': 'logging.FileHandler',
-            'filename': '/var/log/opentrafficweb/django.log',   # changed !!!!!!!!
+            'filename': '/var/log/django/opentrafficweb/django.log',   # changed !!!!!!!!
             'formatter': 'colored',
         },
     },

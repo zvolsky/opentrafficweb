@@ -139,6 +139,7 @@ B2_BUCKET_NAME = os.environ.get('B2_BUCKET_NAME') or config.get('b2', 'B2_BUCKET
 #BACKBLAZEB2_BUCKET_PRIVATE = False
 
 
+# colorlog + https://gist.github.com/raphaelyancey/bf8b53a2dbf675f9c99cf39f9e52c224
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,

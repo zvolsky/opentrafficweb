@@ -1,4 +1,4 @@
-psycopg2-binary
+psycopg2-binary   # install after debian pkg prerequisities: apt install build-dep python-psycopg2
 requests
 django
 django-b2
@@ -6,6 +6,8 @@ django-b2
 # -i https://test.pypi.org/simple/ django-b2
 # b2sdk
 # git+https://github.com/royendgel/django-backblazeb2-storage
+
+whitenoise[brotli]
 
 colorlog
 faker

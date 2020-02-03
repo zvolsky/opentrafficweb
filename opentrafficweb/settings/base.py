@@ -20,8 +20,11 @@ config.read('/etc/django/opentrafficweb/env.ini')
 
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-PROJECT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+PROJECT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))  # probably same with/without abspath
+# PROJECT_ROOT = PROJECT_DIR   # (this is shopon project style)
 BASE_DIR = os.path.dirname(PROJECT_DIR)
+DEV_TMP_DIR = os.path.join(BASE_DIR, '.devtmp')
+
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
@@ -48,6 +51,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -135,15 +139,23 @@ USE_L10N = True
 
 USE_TZ = True
 
-
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/3.0/howto/static-files/
-
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+# Media and static settings, development
+# https://docs.djangoproject.com/en/3.0/howto/static-files/ (+ shopon project ideas)
+#STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATIC_ROOT = os.path.join(DEV_TMP_DIR, 'static')
 STATIC_URL = '/static/'
+
+# (shopon style, project level static/)
+#STATICFILES_DIRS = [
+#    os.path.join(PROJECT_DIR, 'static'),
+#]
+
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+WHITENOISE_ROOT = os.path.join(DEV_TMP_DIR, 'static', 'root')
 
 MEDIA_URL = '/media/'
 #MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+#MEDIA_ROOT = os.path.join(DEV_TMP_DIR, 'media')
 #DEFAULT_FILE_STORAGE = 'b2_storage.storage.B2Storage'  # github.com/royendgel/django-backblazeb2-storage
 DEFAULT_FILE_STORAGE = 'django_b2.storage.B2Storage'    # github.com/pyutil/django-b2 (using b2sdk, by zvolsky)
 B2_APP_KEY_ID = os.environ.get('B2_APP_KEY_ID') or config.get('b2', 'B2_APP_KEY_ID')

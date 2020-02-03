@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'pokus',
+    'pg_dump_anonymized',
 ]
 
 MIDDLEWARE = [

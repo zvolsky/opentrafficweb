@@ -8,3 +8,5 @@ django-b2
 # git+https://github.com/royendgel/django-backblazeb2-storage
 
 colorlog
+faker
+

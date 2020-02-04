@@ -1,5 +1,6 @@
 # mz
 .idea/
+dump/
 *.dump
 
 # Byte-compiled / optimized / DLL files

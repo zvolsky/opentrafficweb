@@ -2,7 +2,6 @@
 #-r test.pip
 
 # debugging
-django-extensions
 django-debug-toolbar
 
 # deployment

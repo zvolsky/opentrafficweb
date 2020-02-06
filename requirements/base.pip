@@ -11,5 +11,4 @@ django-b2
 whitenoise[brotli]
 
 colorlog
-faker
 

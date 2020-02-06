@@ -2,3 +2,7 @@
 #-r test.pip
 
 gunicorn
+
+faker
+pg-dump-anonymized
+

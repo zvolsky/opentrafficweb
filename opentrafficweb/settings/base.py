@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'django_extensions',
 
     'pokus',
+    'django_b2',
     'pg_dump_anonymized',
 ]
 

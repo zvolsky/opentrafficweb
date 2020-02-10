@@ -158,12 +158,13 @@ WHITENOISE_ROOT = os.path.join(DEV_TMP_DIR, 'static', 'root')
 
 MEDIA_URL = '/media/'
 #MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-#MEDIA_ROOT = os.path.join(DEV_TMP_DIR, 'media')
+MEDIA_ROOT = os.path.join(DEV_TMP_DIR, 'media')
 #DEFAULT_FILE_STORAGE = 'b2_storage.storage.B2Storage'  # github.com/royendgel/django-backblazeb2-storage
 DEFAULT_FILE_STORAGE = 'django_b2.storage.B2Storage'    # github.com/pyutil/django-b2 (using b2sdk, by zvolsky)
 B2_APP_KEY_ID = os.environ.get('B2_APP_KEY_ID') or config.get('b2', 'B2_APP_KEY_ID')
 B2_APP_KEY = os.environ.get('B2_APP_KEY') or config.get('b2', 'B2_APP_KEY')
 B2_BUCKET_NAME = os.environ.get('B2_BUCKET_NAME') or config.get('b2', 'B2_BUCKET_NAME')
+B2_LOCAL_MEDIA = "ML"  # write media locally (M) and write log (L)
 # unused from django-backblazeb2-storage, royendgel/ or other forks: BACKBLAZEB2_(same-as-B2-above) + ..:
 #BACKBLAZEB2_ACCOUNT_ID = '000exxxxxxxxxxx000000000n'
 #BACKBLAZEB2_BUCKET_ID = 'xxxxxxxxxxxxxxxxxxxxxxxx'

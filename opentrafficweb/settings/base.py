@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 
 import os
 from configparser import RawConfigParser
+#mz ++
+from django.urls import reverse_lazy
 
 
 config = RawConfigParser()
@@ -42,8 +44,16 @@ INSTALLED_APPS = [
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
-    'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
+    'django.contrib.messages',
+
+    'users',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.facebook',
+    'allauth.socialaccount.providers.google',
 
     'django_extensions',
 
@@ -80,6 +90,54 @@ TEMPLATES = [
         },
     },
 ]
+
+# django-allauth and related #mz ++ (from shopon)
+AUTHENTICATION_BACKENDS = (
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
+)
+
+SOCIALACCOUNT_PROVIDERS = {
+    'facebook': {
+        'METHOD': 'oauth2',
+        'SCOPE': ['email', 'public_profile', 'user_friends', 'user_location', 'user_likes'],
+        # 'AUTH_PARAMS': {'auth_type': 'reauthenticate'},
+        'FIELDS': [
+            'id',
+            'email',
+            'name',
+            'first_name',
+            'last_name',
+            'verified',
+            'locale',
+            'timezone',
+            'link',
+            'updated_time'],
+        'EXCHANGE_TOKEN': True,
+        'VERIFIED_EMAIL': False,
+    },
+    'google':
+        {
+            'SCOPE': ['profile', 'email'],
+            'AUTH_PARAMS': {'access_type': 'online'}
+        }
+}
+
+ACCOUNT_USER_MODEL_USERNAME_FIELD = 'username'
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_USERNAME_REQUIRED = True
+ACCOUNT_AUTHENTICATION_METHOD = 'username'
+ACCOUNT_LOGOUT_ON_GET = True
+# ACCOUNT_ADAPTER = 'mum.auth.adapter.AccountAdapter'
+# ACCOUNT_SIGNUP_FORM_CLASS = 'mum.auth.forms.SignupForm'
+
+LOGIN_REDIRECT_URL = reverse_lazy('index')
+
+AUTH_USER_MODEL = 'users.User'
+
+SITE_ID = 1
+#mz ++ end
+
 
 WSGI_APPLICATION = 'opentrafficweb.wsgi.application'
 

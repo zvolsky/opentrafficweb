@@ -10,6 +10,9 @@ django-b2
 # git+https://github.com/royendgel/django-backblazeb2-storage
 
 django-cities
+django-countries
+django-countries-plus
+django-languages-plus
 
 whitenoise[brotli]
 

@@ -57,6 +57,11 @@ INSTALLED_APPS = [
 
     'django_extensions',
 
+    'cities',
+    'django_countries',
+    'countries_plus',
+    'languages_plus',
+
     'pokus',
     'django_b2',
     'pg_dump_anonymized',
@@ -260,9 +265,13 @@ LOGGING = {
     },
     'loggers': {
         '': {
-            'handlers': ['console', 'file'],
-            'level': 'DEBUG',
+            'handlers': ['console'],  # ['console', 'file'],
+            'level': 'INFO',
             'propagate': False,
         },
     }
 }
+
+
+# django-cities
+CITIES_POSTAL_CODES = []

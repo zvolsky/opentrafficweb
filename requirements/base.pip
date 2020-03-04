@@ -9,6 +9,8 @@ django-b2
 # b2sdk
 # git+https://github.com/royendgel/django-backblazeb2-storage
 
+django-cities
+
 whitenoise[brotli]
 
 colorlog

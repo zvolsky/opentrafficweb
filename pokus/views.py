@@ -1,7 +1,8 @@
 from requests import get
 
 from django.contrib.gis.geoip2 import GeoIP2
-from django.shortcuts import HttpResponse, render
+from django.httlp import HttpResponse
+from django.shortcuts import render
 
 
 def where(request):

@@ -9,3 +9,5 @@ django-debug-toolbar
 
 ipython
 pywatchman
+
+pip-tools

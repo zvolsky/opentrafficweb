@@ -55,6 +55,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount.providers.facebook',
     'allauth.socialaccount.providers.google',
 
+    'compressor',
     'django_extensions',
 
     'cities',
@@ -212,10 +213,19 @@ USE_TZ = True
 STATIC_ROOT = os.path.join(DEV_TMP_DIR, 'static')
 STATIC_URL = '/static/'
 
-# (shopon style, project level static/)
-#STATICFILES_DIRS = [
-#    os.path.join(PROJECT_DIR, 'static'),
-#]
+STATICFILES_DIRS = [
+    os.path.join(PROJECT_DIR, 'static'),
+]
+STATICFILES_FINDERS = [
+    'django.contrib.staticfiles.finders.FileSystemFinder',      # shromáždí ze STATICFILES_DIRS
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',  # shromáždí ze všech <app>/static/
+    'compressor.finders.CompressorFinder',   # překlad sass
+]
+
+COMPRESS_PRECOMPILERS = (
+    ('text/x-sass', 'django_libsass.SassCompiler'),
+    ('text/x-scss', 'django_libsass.SassCompiler'),
+)
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 WHITENOISE_ROOT = os.path.join(DEV_TMP_DIR, 'static', 'root')

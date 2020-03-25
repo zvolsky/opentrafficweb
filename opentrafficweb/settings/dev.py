@@ -16,3 +16,17 @@ try:
     from .local import *
 except ImportError:
     pass
+
+DEBUG_TOOLBAR = bool(os.getenv('DDT', False))
+if DEBUG_TOOLBAR:
+    INTERNAL_IPS = ['127.0.0.1']
+    MIDDLEWARE.append(
+        'debug_toolbar.middleware.DebugToolbarMiddleware'
+    )
+    INSTALLED_APPS += (
+        'debug_toolbar',
+    )
+    DEBUG_TOOLBAR_CONFIG = {
+        # 'SHOW_TOOLBAR_CALLBACK': False,
+        'INTERCEPT_REDIRECTS': False,
+    }

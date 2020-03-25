@@ -26,6 +26,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('i18n/', include('django.conf.urls.i18n')),
     path('accounts/', include('allauth.urls')),
+    path('pokus/', include('pokus.urls')),
     path('jsi18n/',
          last_modified(lambda req, **kw: last_modified_date)(
              cache_page(86400, key_prefix='jsi18n')(JavaScriptCatalog.as_view(packages=['fex']))

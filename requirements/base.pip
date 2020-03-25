@@ -10,10 +10,13 @@ django-b2
 # b2sdk
 # git+https://github.com/royendgel/django-backblazeb2-storage
 
-django-cities
+geoip2                   # https://docs.djangoproject.com/en/3.0/ref/contrib/gis/geoip2/
 django-countries
 django-countries-plus
 django-languages-plus
+#django-cities
+#django-cities-light      # ./manage.py cities_light
+git+https://github.com/ngohoangyell/django-cities-light.git@patch-1
 
 whitenoise[brotli]
 

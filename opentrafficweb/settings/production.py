@@ -32,3 +32,5 @@ try:
     from .local import *
 except ImportError:
     pass
+
+GEOIP_PATH = "/usr/share/GeoIP/"    # as long on older Debian (?)

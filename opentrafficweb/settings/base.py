@@ -58,10 +58,11 @@ INSTALLED_APPS = [
     'compressor',
     'django_extensions',
 
-    'cities',
     'django_countries',
     'countries_plus',
     'languages_plus',
+    #'cities',
+    'cities_light',
 
     'pokus',
     'django_b2',
@@ -283,5 +284,11 @@ LOGGING = {
 }
 
 
+# geoip2 / geolite2
+GEOIP_PATH = "/var/lib/GeoIP/"   # podrobnosti k instalaci: keepasx: geolite2
+
 # django-cities
 CITIES_POSTAL_CODES = []
+
+# django-cities-light
+CITIES_LIGHT_TRANSLATION_LANGUAGES = ['en', 'es', 'de', 'fr', 'cz', 'abbr']

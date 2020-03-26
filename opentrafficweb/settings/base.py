@@ -56,6 +56,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount.providers.google',
 
     'compressor',
+    'widget_tweaks',
     'django_extensions',
 
     'django_countries',

@@ -27,6 +27,7 @@ django-debug-toolbar==2.2  # via -r requirements/dev.pip
 django-extensions==2.2.8  # via -r requirements/base.pip
 django-languages-plus==1.1.1  # via -r requirements/base.pip
 django-libsass==0.8       # via -r requirements/base.pip
+django-widget-tweaks==1.4.8  # via -r requirements/base.pip
 django==3.0.4             # via -r requirements/base.pip, django-allauth, django-appconf, django-countries-plus, django-debug-toolbar, django-languages-plus
 funcsigs==1.0.2           # via logfury
 geoip2==3.0.0             # via -r requirements/base.pip

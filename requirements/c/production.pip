@@ -23,6 +23,7 @@ django-countries==6.1     # via -r requirements/base.pip
 django-extensions==2.2.8  # via -r requirements/base.pip
 django-languages-plus==1.1.1  # via -r requirements/base.pip
 django-libsass==0.8       # via -r requirements/base.pip
+django-widget-tweaks==1.4.8  # via -r requirements/base.pip
 django==3.0.4             # via -r requirements/base.pip, django-allauth, django-appconf, django-countries-plus, django-languages-plus
 faker==4.0.2              # via -r requirements/production.pip
 funcsigs==1.0.2           # via logfury

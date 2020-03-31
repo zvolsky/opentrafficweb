@@ -1,7 +1,5 @@
 from django.apps import AppConfig
 
 
-class AuthConfig(AppConfig):
+class UsersConfig(AppConfig):
     name = 'users'
-    label = 'users'
-    verbose_name = "Users"

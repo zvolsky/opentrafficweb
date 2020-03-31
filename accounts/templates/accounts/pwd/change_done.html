@@ -1,0 +1,13 @@
+{% extends "this_project/main_public.html" %}
+
+{% load i18n %}
+
+{% block title %}{% trans 'Password changed' %}{% endblock %}
+
+{% block content %}
+  <div class="alert alert-success" role="alert">
+    <strong>{% trans 'Success.' %}</strong>
+    {% trans 'Your password has been changed.' %}
+  </div>
+  {% include 'accounts/pwd/includes/btn_go_home.html' %}
+{% endblock %}

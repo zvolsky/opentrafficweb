@@ -1,0 +1,35 @@
+{% extends "this_project/main_public.html" %}
+
+{% load i18n %}
+
+{% block title %}{% trans 'My profile' %}{% endblock %}
+
+{% block content %}
+<h2>{% trans "Edit the profile" %}</h2>
+<form method="post" novalidate>
+  {% csrf_token %}
+  {% include 'common/form.html' %}
+  <button type="submit" class="btn btn-primary">{% trans 'Save' %}</button>
+</form>
+
+<!--div class="row justify-content-center">
+  <div class="col-lg-8 col-md-10 col-sm-12">
+    <div class="card">
+      <div class="card-header text-muted text-center">
+        {% trans 'Already have an account?' %}
+        <a href="{% url 'accounts:login' %}">
+          {% trans 'Log in' %}
+        </a>
+      </div>
+      <div class="card-body">
+        <h2>{% trans "Edit the profile" %}</h2>
+        <form method="post" novalidate>
+          {% csrf_token %}
+          {% include 'common/form.html' %}
+          <button type="submit" class="btn btn-primary">{% trans 'Save' %}</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div-->
+{% endblock %}

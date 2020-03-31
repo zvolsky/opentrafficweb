@@ -1,0 +1,229 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-03-31 15:07+0200\n"
+"PO-Revision-Date: 2020-03-31 15:30+0200\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: cs_CZ\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.3\n"
+
+#: templates/accounts/includes/bye.html:1
+#, python-format
+msgid ""
+"\n"
+"Best regards,\n"
+"The %(domain)s Team\n"
+msgstr ""
+"\n"
+"S pozdravem,\n"
+"Váš %(domain)s tým\n"
+
+#: templates/accounts/includes/hi.html:3
+msgid ""
+"\n"
+"Hi there,\n"
+msgstr ""
+"\n"
+"Dobrý den,\n"
+
+#: templates/accounts/login.html:10
+msgid "New on our website?"
+msgstr "Jste poprvé na našich stránkách?"
+
+#: templates/accounts/login.html:12 templates/accounts/signup.html:16
+msgid "Sign up"
+msgstr "Zaregistrovat se"
+
+#: templates/accounts/login.html:16
+msgid "Please log in"
+msgstr "Prosím, přihlašte se"
+
+#: templates/accounts/login.html:20 templates/accounts/signup.html:12
+msgid "Log in"
+msgstr "Přihlásit se"
+
+#: templates/accounts/login.html:24
+msgid "Forgot your username?"
+msgstr "Zapomněl(a) jsem jméno uživatele"
+
+#: templates/accounts/login.html:31
+msgid "Forgot your password?"
+msgstr "Zapomněl(a) jsem heslo"
+
+#: templates/accounts/pwd/change.html:5 templates/accounts/pwd/change.html:13
+#: templates/accounts/pwd/reset_confirm.html:7
+#: templates/accounts/pwd/reset_confirm.html:25
+msgid "Change password"
+msgstr "Změnit heslo"
+
+#: templates/accounts/pwd/change_done.html:5
+msgid "Password changed"
+msgstr "Heslo bylo změněno"
+
+#: templates/accounts/pwd/change_done.html:9
+msgid "Success."
+msgstr "Provedeno."
+
+#: templates/accounts/pwd/change_done.html:10
+msgid "Your password has been changed."
+msgstr "Vaše heslo bylo změněno."
+
+#: templates/accounts/pwd/get_username.html:5
+#: templates/accounts/pwd/get_username.html:12
+#: templates/accounts/pwd/get_username_done.html:5
+#: templates/accounts/pwd/get_username_done.html:9
+msgid "Get username"
+msgstr "Zjistit jméno uživatele"
+
+#: templates/accounts/pwd/get_username.html:13
+msgid "Enter your email address and we will send you your username."
+msgstr ""
+"Zadejte mailovou adresu, pod níž jste registrován(a), a my Vám zašleme Vaše "
+"jméno uživatele."
+
+#: templates/accounts/pwd/get_username.html:18
+msgid "Send email with username"
+msgstr "Poslat mail se jménem uživatele"
+
+#: templates/accounts/pwd/get_username_done.html:10
+msgid "Check your email for your username."
+msgstr ""
+"Zkontrolujte svoji mailovou schránku, v mailu najdete své jméno uživatele."
+
+#: templates/accounts/pwd/get_username_email.html:4
+#, python-format
+msgid ""
+"\n"
+"Your username for the website %(domain)s registered together with the email "
+"address %(email)s is:\n"
+"%(username)s\n"
+msgstr ""
+"\n"
+"Vaše jméno uživatele pro web %(domain)s, jak bylo registrováno spolu s "
+"mailovou adresou %(email)s je:\n"
+"%(username)s\n"
+
+#: templates/accounts/pwd/get_username_subject.txt:1
+msgid "asked: get your username"
+msgstr "Žádal(a) jste: O sdělení jména uživatele"
+
+#: templates/accounts/pwd/includes/btn_go_home.html:5
+msgid "Go to the main page"
+msgstr "Přejít na hlavní stránku"
+
+#: templates/accounts/pwd/includes/done_footer.html:3
+msgid "If it doesn't appear within a few minutes, check your spam folder too."
+msgstr ""
+"Pokud se mail neobjeví v krátké době, pokuste se ho najít také ve složce "
+"spamu."
+
+#: templates/accounts/pwd/includes/done_footer.html:7
+msgid "Return to log in"
+msgstr "Zpět k přihlášení uživatele"
+
+#: templates/accounts/pwd/includes/false_mail.html:1
+msgid ""
+"\n"
+"If you've received this mail in error, it's likely that another user entered "
+"your email address\n"
+"by mistake while trying to login. If you didn't initiate the request, you "
+"don't need to take\n"
+"any further action and can safely disregard this email.\n"
+msgstr ""
+"\n"
+"Jestliže jste dostal(a) tento mail omylem, pak se to stalo nejspíš proto, že "
+"někdo omylem zadal Vaši adresu,\n"
+"když se pokoušel přihlásit na náš web. Jestliže jste to nebyl(a) Vy, není "
+"potřeba provést žádnou akci\n"
+"a tento mail můžete ignorovat.\n"
+
+#: templates/accounts/pwd/reset.html:5
+#: templates/accounts/pwd/reset_complete.html:5
+#: templates/accounts/pwd/reset_confirm.html:9
+#: templates/accounts/pwd/reset_done.html:5
+msgid "Reset password"
+msgstr "Obnova hesla"
+
+#: templates/accounts/pwd/reset.html:12
+#: templates/accounts/pwd/reset_complete.html:12
+#: templates/accounts/pwd/reset_confirm.html:28
+#: templates/accounts/pwd/reset_done.html:9
+msgid "Reset your password"
+msgstr "Obnovte si své heslo"
+
+#: templates/accounts/pwd/reset.html:13
+msgid ""
+"Enter your email address and we will send you a link to reset your password."
+msgstr ""
+"Zadejte mailovou adresu, pod níž jste registrován(a), a my Vám zašleme mail, "
+"který umožňuje si nastavit jiné heslo."
+
+#: templates/accounts/pwd/reset.html:18
+msgid "Send password reset email"
+msgstr "Odeslat mail, určený k obnově hesla"
+
+#: templates/accounts/pwd/reset_complete.html:13
+#: templates/accounts/pwd/reset_done.html:10
+msgid "Check your email for a link to reset your password."
+msgstr ""
+"Zkontrolujte svoji mailovou schránku, v mailu najdete odkaz pro obnovu hesla."
+
+#: templates/accounts/pwd/reset_confirm.html:20
+#, python-format
+msgid "Change password for user: <b>%(username)s</b>"
+msgstr "Změnit heslo uživatele: <b>%(username)s</b>"
+
+#: templates/accounts/pwd/reset_confirm.html:30
+msgid ""
+"It looks like this is an invalid password reset link. Please try your "
+"request again."
+msgstr ""
+"Zdá se, že odkaz pro změnu hesla (už) není platný. Prosím, proveďte svoji "
+"žádost znova."
+
+#: templates/accounts/pwd/reset_confirm.html:32
+msgid "Request a new password reset link"
+msgstr "Zažádat o odkaz pro změnu hesla znovu"
+
+#: templates/accounts/pwd/reset_email.html:4
+#, python-format
+msgid ""
+"\n"
+"For a password reset for the email address %(email)s follow the link:\n"
+msgstr ""
+"\n"
+"Ke změně hesla uživatele, registrovaného pomocí adresy %(email)s klepněte na "
+"odkaz:\n"
+
+#: templates/accounts/pwd/reset_email.html:10
+msgid ""
+"\n"
+"If clicking the link above doesn't work,\n"
+"please copy and paste the URL in a new browser window instead.\n"
+msgstr ""
+"\n"
+"Pokud by klepnutí na odkaz výše nefungovalo,\n"
+"prosím zkopírujte tuto adresu a vložte ji do adresního řádku v novém okně "
+"prohlížeče.\n"
+
+#: templates/accounts/pwd/reset_subject.txt:1
+msgid "asked: change your password"
+msgstr "Žádal(a) jste: O obnovu hesla"
+
+#: templates/accounts/signup.html:10
+msgid "Already have an account?"
+msgstr "Už máte založen účet?"
+
+#: templates/accounts/signup.html:20
+msgid "Create an account"
+msgstr "Vytvořit účet"

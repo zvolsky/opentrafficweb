@@ -13,40 +13,34 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-from django.urls import include, path
 from django.conf import settings
 from django.conf.urls.i18n import i18n_patterns
 from django.contrib import admin
-from django.views.decorators.cache import cache_page
-from django.views.decorators.http import last_modified
-from django.views.i18n import JavaScriptCatalog
+from django.urls import include, path
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('i18n/', include('django.conf.urls.i18n')),
-    path('accounts/', include('allauth.urls')),
-    path('pokus/', include('pokus.urls')),
-    path('jsi18n/',
-         last_modified(lambda req, **kw: last_modified_date)(
-             cache_page(86400, key_prefix='jsi18n')(JavaScriptCatalog.as_view(packages=['fex']))
-         ), name='jsi18n'),
-
-    # shopon non-i18n urls (all, that is not needed for search engines)
-    # path('', include('urls_not_i18n')),
 ]
 
-'''
 urlpatterns.extend(
     i18n_patterns(
-        path('', include('urls_i18n'))
+        path('accounts/', include(('accounts.urls', 'accounts'), namespace='accounts')),
+        path('users/', include(('users.urls', 'users'), namespace='users')),
     )
 )
-'''
+
+if settings.DEBUG:
+    from django.conf.urls.static import static
+    from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+
+    # Serve static and media files from development server
+    urlpatterns += staticfiles_urlpatterns()
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 if settings.DEBUG_TOOLBAR:
     import debug_toolbar
 
     urlpatterns += [
-        url(r'^__debug__/', include(debug_toolbar.urls)),
+        path('__debug__/', include(debug_toolbar.urls)),
     ]

@@ -1,0 +1,17 @@
+{% extends "this_project/main_public.html" %}
+
+{% load i18n %}
+
+{% block title %}{% trans 'Change password' %}{% endblock %}
+
+{% block content %}
+  <div class="row">
+    <div class="col-lg-6 col-md-8 col-sm-10">
+      <form method="post">
+        {% csrf_token %}
+        {% include 'common/form.html' %}
+        <button type="submit" class="btn btn-success">{% trans 'Change password' %}</button>
+      </form>
+    </div>
+  </div>
+{% endblock %}

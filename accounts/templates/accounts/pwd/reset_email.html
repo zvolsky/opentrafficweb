@@ -1,0 +1,15 @@
+{% load i18n %}
+
+{% include 'accounts/includes/hi.html' %}
+{% blocktrans %}
+For a password reset for the email address {{ email }} follow the link:
+{% endblocktrans %}
+
+{{ protocol }}://{{ domain }}{% url 'accounts:password_reset_confirm' uidb64=uid token=token %}
+
+{% blocktrans %}
+If clicking the link above doesn't work,
+please copy and paste the URL in a new browser window instead.
+{% endblocktrans %}
+{% include 'accounts/pwd/includes/false_mail.html' %}
+{% include 'accounts/includes/bye.html' %}

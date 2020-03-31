@@ -1,0 +1,10 @@
+{% load i18n %}
+
+{% trans "If it doesn't appear within a few minutes, check your spam folder too." %}
+</p>
+<div class="mb-1">
+  <a href="{% url 'accounts:login' %}" class="btn btn-secondary btn-block">
+    {% trans 'Return to log in' %}
+  </a>
+</div>
+{% include 'accounts/pwd/includes/btn_go_home.html' %}

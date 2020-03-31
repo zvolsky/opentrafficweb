@@ -1,81 +1,62 @@
-from django.contrib.auth.base_user import AbstractBaseUser, BaseUserManager
-from django.contrib.auth.models import PermissionsMixin
-from django.contrib.auth.validators import UnicodeUsernameValidator
-from django.contrib.postgres.fields import JSONField
+from django.contrib.auth.models import AbstractUser  #, BaseUserManager
 from django.db import models
-from django.utils import timezone
-from django.utils.translation import gettext_lazy as _
-
-from .fields import RandomUniqueKeyField, get_random_key
 
 
-class UserManager(BaseUserManager):
+"""
+class CustomUserManager(BaseUserManager):
+    def create_user(self, username, email=None, password=None, **extra_fields):
+        return super().create_user(username, email, password, **extra_fields)
+        '''
+        extra_fields.setdefault('is_staff', False)
+        extra_fields.setdefault('is_superuser', False)
+        return self._create_user(username, email, password, **extra_fields)
+        '''
 
-    def create_user(self, email, password=None, **extra_fields):
-        now = timezone.now()
-        if not email:
-            raise ValueError('The given email must be set')
-        email = UserManager.normalize_email(email)
-        user = self.model(email=email,
-                          is_staff=False, is_active=True, is_superuser=False,
-                          last_login=now, date_joined=now, **extra_fields)
+    def create_superuser(self, username, email=None, password=None, **extra_fields):
+        return super().create_user(username, email, password, **extra_fields)
+        '''
+        extra_fields.setdefault('is_staff', True)
+        extra_fields.setdefault('is_superuser', True)
 
-        user.set_password(password)
-        user.save(using=self._db)
-        return user
+        if extra_fields.get('is_staff') is not True:
+            raise ValueError('Superuser must have is_staff=True.')
+        if extra_fields.get('is_superuser') is not True:
+            raise ValueError('Superuser must have is_superuser=True.')
 
-    def create_superuser(self, email, password, **extra_fields):
-        user = self.create_user(email, password, **extra_fields)
-        user.is_staff = True
-        user.is_superuser = True
-        user.save(using=self._db)
-        return user
-
-    def active(self):
-        return self.get_queryset().filter(is_active=True)
+        return self._create_user(username, email, password, **extra_fields)
+        '''
+"""
 
 
-class User(AbstractBaseUser, PermissionsMixin):
-    EMAIL_FIELD = 'email'
-    USERNAME_FIELD = 'username'
-    REQUIRED_FIELDS = ['email']
+# https://simpleisbetterthancomplex.com/tutorial/2016/07/22/how-to-extend-django-user-model.html#abstractuser
+class User(AbstractUser):
+    gdpr = models.DateTimeField(null=True, blank=True)
 
-    objects = UserManager()
-
-    username_validator = UnicodeUsernameValidator()
-
-    username = models.CharField(
-        _('username'),
-        max_length=150,
-        unique=True,
-        help_text=_('Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only.'),
-        validators=[username_validator],
-        error_messages={
-            'unique': _("A user with that username already exists."),
-        },
-    )
-    email = models.EmailField(_("email address"), unique=True, db_index=True)
-    first_name = models.CharField(_("first name"), max_length=30, blank=True)
-    last_name = models.CharField(_("last name"), max_length=30, blank=True)
-    is_active = models.BooleanField(_("active"), default=True,
-                                    help_text=_("Designates whether this user should be treated as "
-                                    "active. Unselect this instead of deleting accounts."))
-    is_staff = models.BooleanField(_("staff status"), default=False,
-                                   help_text=_("Designates whether the user can log into this admin site."))
-    date_joined = models.DateTimeField(_("date joined"), default=timezone.now)
-
-    extra_data = JSONField(null=True, blank=True)
-    api_key = RandomUniqueKeyField(_("api token"), max_length=40, editable=False, unique=True, default=get_random_key)
-
-    def get_full_name(self):
-        return '{} {}'.format(self.first_name, self.last_name).strip()
-
-    def get_short_name(self):
-        return self.first_name
+    '''
+    @staticmethod
+    def autocomplete_search_fields():
+        return 'username', 'last_name'
 
     def __str__(self):
-        return self.username
+        fullname = '{} {}'.format(self.first_name, self.last_name)
 
-    class Meta:
-        verbose_name = _('user')
-        verbose_name_plural = _('users')
+        if fullname == ' ':
+            return self.username
+        return '{} - {}'.format(self.username, fullname)
+    '''
+
+    def create_user(self, username, email=None, password=None, **extra_fields):
+        extra_fields.setdefault('is_staff', False)
+        extra_fields.setdefault('is_superuser', False)
+        return self._create_user(username, email, password, **extra_fields)
+
+    def create_superuser(self, username, email=None, password=None, **extra_fields):
+        extra_fields.setdefault('is_staff', True)
+        extra_fields.setdefault('is_superuser', True)
+
+        if extra_fields.get('is_staff') is not True:
+            raise ValueError('Superuser must have is_staff=True.')
+        if extra_fields.get('is_superuser') is not True:
+            raise ValueError('Superuser must have is_superuser=True.')
+
+        return self._create_user(username, email, password, **extra_fields)

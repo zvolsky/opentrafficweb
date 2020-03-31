@@ -1,0 +1,9 @@
+{% load i18n %}
+
+{% include 'accounts/includes/hi.html' %}
+{% with username=user.username %}{% blocktrans %}
+Your username for the website {{ domain }} registered together with the email address {{ email }} is:
+{{ username }}
+{% endblocktrans %}{% endwith %}
+{% include 'accounts/pwd/includes/false_mail.html' %}
+{% include 'accounts/includes/bye.html' %}

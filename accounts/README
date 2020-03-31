@@ -1,0 +1,39 @@
+accounts:
+
+----------------------------------------------------------------------------
+
+implementováno podle
+https://simpleisbetterthancomplex.com/series/2017/09/25/a-complete-beginners-guide-to-django-part-4.html#console-email-backend
+s drobnými změnami
+např. mi nepřišlo bezpečné připomínat username v mailu pro reset hesla - připomenutí username odděleno do extra mailu.
+
+Záměr:
+common - přenositelná obecná (wrapper/siteframe) aplikace
+accounts - přenositelná obecná aplikace pro login a registraci
+users - pro projekt specifická aplikace s Custom User modelem
+
+Příklad settings:
+
+AUTH_USER_MODEL = 'users.User'
+LOGIN_URL = 'accounts:login'
+# custom settings used in 'accounts' app
+HOME_URL = 'schemas_customers:home'
+LOGIN_REDIRECT_URL = HOME_URL
+LOGOUT_REDIRECT_URL = HOME_URL
+
+Příklad root urls:
+
+urlpatterns.extend(
+    i18n_patterns(
+        path('accounts/', include(('accounts.urls', 'accounts'), namespace='accounts')),
+    )
+)
+
+----------------------------------------------------------------------------
+
+vynechány 2 refactory
+  sjednocení login a signup templaty
+  template_tags
+
+debugování mailů: pozor, chodí jen když mail patří registrovanému uživateli
+

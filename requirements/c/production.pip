@@ -11,8 +11,6 @@ brotli==1.0.7             # via whitenoise
 certifi==2019.11.28       # via requests
 chardet==3.0.4            # via requests
 colorlog==4.1.0           # via -r requirements/base.pip
-defusedxml==0.6.0         # via python3-openid
-django-allauth==0.41.0    # via -r requirements/base.pip
 django-appconf==1.0.3     # via django-compressor
 django-autoslug-iplweb==1.9.4.dev0  # via django-cities-light
 django-b2==0.5.0          # via -r requirements/base.pip
@@ -24,7 +22,7 @@ django-extensions==2.2.8  # via -r requirements/base.pip
 django-languages-plus==1.1.1  # via -r requirements/base.pip
 django-libsass==0.8       # via -r requirements/base.pip
 django-widget-tweaks==1.4.8  # via -r requirements/base.pip
-django==3.0.4             # via -r requirements/base.pip, django-allauth, django-appconf, django-countries-plus, django-languages-plus
+django==3.0.4             # via -r requirements/base.pip, django-appconf, django-countries-plus, django-languages-plus
 faker==4.0.2              # via -r requirements/production.pip
 funcsigs==1.0.2           # via logfury
 geoip2==3.0.0             # via -r requirements/base.pip
@@ -33,17 +31,14 @@ idna==2.9                 # via requests
 libsass==0.19.4           # via django-libsass
 logfury==0.1.2            # via b2sdk
 maxminddb==1.5.2          # via geoip2
-oauthlib==3.1.0           # via requests-oauthlib
 pg-dump-anonymized==0.1.0  # via -r requirements/production.pip
 progressbar2==3.50.1      # via django-cities-light
 psycopg2-binary==2.8.4    # via -r requirements/base.pip
 python-dateutil==2.8.1    # via arrow, faker
 python-utils==2.4.0       # via progressbar2
-python3-openid==3.1.0     # via django-allauth
 pytz==2019.3              # via django, django-cities-light
 rcssmin==1.0.6            # via django-compressor
-requests-oauthlib==1.3.0  # via django-allauth
-requests==2.23.0          # via -r requirements/base.pip, b2sdk, django-allauth, django-countries-plus, geoip2, requests-oauthlib
+requests==2.23.0          # via -r requirements/base.pip, b2sdk, django-countries-plus, geoip2
 rjsmin==1.1.0             # via django-compressor
 six==1.14.0               # via b2sdk, django-appconf, django-cities-light, django-compressor, django-countries-plus, django-extensions, libsass, logfury, progressbar2, python-dateutil, python-utils
 sqlparse==0.3.1           # via django

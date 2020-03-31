@@ -48,12 +48,10 @@ INSTALLED_APPS = [
     'django.contrib.sites',
     'django.contrib.messages',
 
+    'common',
+    'accounts',
     'users',
-    'allauth',
-    'allauth.account',
-    'allauth.socialaccount',
-    'allauth.socialaccount.providers.facebook',
-    'allauth.socialaccount.providers.google',
+    'main',
 
     'compressor',
     'widget_tweaks',
@@ -62,12 +60,9 @@ INSTALLED_APPS = [
     'django_countries',
     'countries_plus',
     'languages_plus',
-    #'cities',
     'cities_light',
 
-    'pokus',
     'django_b2',
-    'pg_dump_anonymized',
 ]
 
 MIDDLEWARE = [
@@ -101,48 +96,13 @@ TEMPLATES = [
 ]
 
 # django-allauth and related #mz ++ (from shopon)
-AUTHENTICATION_BACKENDS = (
-    'django.contrib.auth.backends.ModelBackend',
-    'allauth.account.auth_backends.AuthenticationBackend',
-)
-
-SOCIALACCOUNT_PROVIDERS = {
-    'facebook': {
-        'METHOD': 'oauth2',
-        'SCOPE': ['email', 'public_profile', 'user_friends', 'user_location', 'user_likes'],
-        # 'AUTH_PARAMS': {'auth_type': 'reauthenticate'},
-        'FIELDS': [
-            'id',
-            'email',
-            'name',
-            'first_name',
-            'last_name',
-            'verified',
-            'locale',
-            'timezone',
-            'link',
-            'updated_time'],
-        'EXCHANGE_TOKEN': True,
-        'VERIFIED_EMAIL': False,
-    },
-    'google':
-        {
-            'SCOPE': ['profile', 'email'],
-            'AUTH_PARAMS': {'access_type': 'online'}
-        }
-}
-
-ACCOUNT_USER_MODEL_USERNAME_FIELD = 'username'
-ACCOUNT_EMAIL_REQUIRED = True
-ACCOUNT_USERNAME_REQUIRED = True
-ACCOUNT_AUTHENTICATION_METHOD = 'username'
-ACCOUNT_LOGOUT_ON_GET = True
-# ACCOUNT_ADAPTER = 'mum.auth.adapter.AccountAdapter'
-# ACCOUNT_SIGNUP_FORM_CLASS = 'mum.auth.forms.SignupForm'
-
-LOGIN_REDIRECT_URL = reverse_lazy('index')
-
 AUTH_USER_MODEL = 'users.User'
+LOGIN_URL = 'accounts:login'
+# custom settings used in 'accounts' app
+HOME_URL = 'admin:home'
+LOGIN_REDIRECT_URL = HOME_URL
+LOGOUT_REDIRECT_URL = HOME_URL
+
 
 SITE_ID = 1
 #mz ++ end
@@ -200,6 +160,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # https://docs.djangoproject.com/en/3.0/topics/i18n/
 
 LANGUAGE_CODE = 'en-us'
+LOCALE_PATHS = ['locale']
 
 TIME_ZONE = 'Europe/Prague'
 
@@ -233,20 +194,12 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 WHITENOISE_ROOT = os.path.join(DEV_TMP_DIR, 'static', 'root')
 
 MEDIA_URL = '/media/'
-#MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_ROOT = os.path.join(DEV_TMP_DIR, 'media')
-#DEFAULT_FILE_STORAGE = 'b2_storage.storage.B2Storage'  # github.com/royendgel/django-backblazeb2-storage
 DEFAULT_FILE_STORAGE = 'django_b2.storage.B2Storage'    # github.com/pyutil/django-b2 (using b2sdk, by zvolsky)
 B2_APP_KEY_ID = os.environ.get('B2_APP_KEY_ID') or config.get('b2', 'B2_APP_KEY_ID')
 B2_APP_KEY = os.environ.get('B2_APP_KEY') or config.get('b2', 'B2_APP_KEY')
 B2_BUCKET_NAME = os.environ.get('B2_BUCKET_NAME') or config.get('b2', 'B2_BUCKET_NAME')
 B2_LOCAL_MEDIA = "ML"  # write media locally (M) and write log (L)
-# unused from django-backblazeb2-storage, royendgel/ or other forks: BACKBLAZEB2_(same-as-B2-above) + ..:
-#BACKBLAZEB2_ACCOUNT_ID = '000exxxxxxxxxxx000000000n'
-#BACKBLAZEB2_BUCKET_ID = 'xxxxxxxxxxxxxxxxxxxxxxxx'
-#BACKBLAZEB2_MAX_RETRIES = 3
-#BACKBLAZEB2_BUCKET_PRIVATE = False
-
 
 # colorlog + https://gist.github.com/raphaelyancey/bf8b53a2dbf675f9c99cf39f9e52c224
 LOGGING = {
@@ -287,9 +240,6 @@ LOGGING = {
 
 # geoip2 / geolite2
 GEOIP_PATH = "/var/lib/GeoIP/"   # podrobnosti k instalaci: keepasx: geolite2
-
-# django-cities
-CITIES_POSTAL_CODES = []
 
 # django-cities-light
 CITIES_LIGHT_TRANSLATION_LANGUAGES = ['en', 'es', 'de', 'fr', 'cz', 'abbr']

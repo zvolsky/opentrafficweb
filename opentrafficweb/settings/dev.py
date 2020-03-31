@@ -10,6 +10,11 @@ SECRET_KEY = 'e^+j630&uymk*6ku_u4+*e744ftl993v5$adwgwk!x1+*5l^!6'
 ALLOWED_HOSTS = ['*'] 
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+EMAIL_HOST = 'localhost'   # run ./MailHog
+EMAIL_PORT = 1025          # navigate to localhost:8025
+EMAIL_HOST_USER = ''
+EMAIL_HOST_PASSWORD = ''
+EMAIL_USE_TLS = False
 
 
 try:

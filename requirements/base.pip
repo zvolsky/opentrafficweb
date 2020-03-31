@@ -1,11 +1,10 @@
 psycopg2-binary   # install after debian pkg prerequisities: apt install build-dep python-psycopg2
 requests
 django
-django-allauth
+#django-allauth
 django-widget-tweaks
 django-compressor
 django-libsass
-django-extensions
 django-b2
 # -e git+git@github-pyutil:pyutil/django-b2.git
 # -i https://test.pypi.org/simple/ django-b2
@@ -22,4 +21,5 @@ git+https://github.com/ngohoangyell/django-cities-light.git@patch-1
 
 whitenoise[brotli]
 
+django-extensions
 colorlog

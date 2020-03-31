@@ -1,0 +1,40 @@
+{% extends "this_project/main_public.html" %}
+
+{% load i18n %}
+
+{% block content %}
+<div class="row justify-content-center">
+  <div class="col-lg-8 col-md-10 col-sm-12">
+    <div class="card">
+      <div class="card-header text-muted text-center">
+        {% trans 'New on our website?' %}
+        <a href="{% url 'accounts:signup' %}">
+          {% trans 'Sign up' %}
+        </a>
+      </div>
+      <div class="card-body">
+        <h2>{% trans "Please log in" %}</h2>
+        <form method="post">
+          {% csrf_token %}
+          {% include 'common/form.html' %}
+          <button type="submit" class="btn btn-primary">{% trans 'Log in' %}</button>
+          <div class="text-center py-2">
+            <small>
+              <a href="{% url 'accounts:get_username' %}" class="text-muted">
+                {% trans 'Forgot your username?' %}
+              </a>
+            </small>
+          </div>
+          <div class="text-center py-2">
+            <small>
+              <a href="{% url 'accounts:password_reset' %}" class="text-muted">
+                {% trans 'Forgot your password?' %}
+              </a>
+            </small>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

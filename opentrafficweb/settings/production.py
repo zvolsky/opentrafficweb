@@ -34,3 +34,29 @@ except ImportError:
     pass
 
 GEOIP_PATH = "/usr/share/GeoIP/"    # as long on older Debian (?)
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': True,
+    'formatters': {
+        'verbose': {
+            'format': '%(asctime)s %(levelname)s [%(name)s:%(lineno)s] %(module)s %(process)d %(thread)d %(message)s'
+        }
+    },
+    'handlers': {
+        'gunicorn': {
+            'level': 'DEBUG',
+            'class': 'logging.handlers.RotatingFileHandler',
+            'formatter': 'verbose',
+            'filename': '/home/www-data/dj/opentrafficweb/opentrafficweb/log/nginx/gunicorn-error.log',
+            'maxBytes': 1024 * 1024 * 32,  # 32 mb
+        }
+    },
+    'loggers': {
+        'gunicorn.errors': {
+            'level': 'DEBUG',
+            'handlers': ['gunicorn'],
+            'propagate': True,
+        },
+    }
+}

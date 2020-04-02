@@ -80,7 +80,7 @@ LOGGING = {
     'gunicorn': {
         'level': 'DEBUG',
         'class': 'logging.handlers.RotatingFileHandler',
-        'formatter': 'verbose',
+        'formatter': 'django.server',
         'filename': '/home/www-data/dj/opentrafficweb/opentrafficweb/log/gunicorn/error.log',
         'maxBytes': 1024 * 1024 * 32,  # 32 mb
     }

@@ -70,6 +70,13 @@ LOGGING = {
         'class': 'logging.StreamHandler',
         'formatter': 'django.server',
     },
+    '''
+    'mail_admins': {
+        'level': 'ERROR',
+        'filters': ['require_debug_false'],
+        'class': 'django.utils.log.AdminEmailHandler'
+    },
+    '''
     'gunicorn': {
         'level': 'DEBUG',
         'class': 'logging.handlers.RotatingFileHandler',

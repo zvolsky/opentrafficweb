@@ -11,7 +11,7 @@ class UpdateProfileView(UpdateView):
     form = CustomUserChangeForm
     fields = ('email',)  # CustomUserChangeForm.fields
     template = 'users/update_profile.html'
-    success_url = reverse_lazy('schemas_customers:home')
+    success_url = reverse_lazy('main:home')
 
     def get_object(self):
         return self.request.user

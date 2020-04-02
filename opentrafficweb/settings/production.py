@@ -85,6 +85,7 @@ LOGGING = {
         'filters': ['require_debug_false'],
         'class': 'django.utils.log.AdminEmailHandler'
     },
+    """
     'gunicorn': {
         'level': 'DEBUG',
         'class': 'logging.handlers.RotatingFileHandler',
@@ -92,10 +93,11 @@ LOGGING = {
         'filename': '/home/www-data/dj/opentrafficweb/opentrafficweb/log/gunicorn/error.log',
         'maxBytes': 1024 * 1024 * 32,  # 32 mb
     }
+    """
 },
 'loggers': {
     'django': {
-        'handlers': ['console', 'mail_admins', 'console_on_not_debug', 'gunicorn'],  # 
+        'handlers': ['console', 'mail_admins', 'console_on_not_debug'],  # , 'gunicorn' 
         'level': 'INFO',
     },
     'django.server': {

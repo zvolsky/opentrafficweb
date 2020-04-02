@@ -1,0 +1,15 @@
+{% extends "opentrafficweb/main_public.html" %}
+
+{% load static %}
+{% load i18n %}
+{% load widget_tweaks %}
+
+{% block content %}
+  {{ block.super }}
+
+  Nazdar
+{% endblock %}
+
+{% block finaljs %}
+<script src="{% static "schemas_customers/js/client_create.js" %}" defer></script>
+{% endblock %}

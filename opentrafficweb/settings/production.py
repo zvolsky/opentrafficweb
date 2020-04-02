@@ -17,6 +17,16 @@ SECRET_KEY = os.environ.get('MZ_SECRET_KEY') or config.get('main', 'SECRET_KEY')
 ALLOWED_HOSTS = (os.environ.get('MZ_ALLOWED_HOSTS') or config.get('main', 'ALLOWED_HOSTS')
                  ).replace(',', ' ').replace(';', ' ').split()
 
+# sendgrid: https://simpleisbetterthancomplex.com/tutorial/2016/06/13/how-to-send-email.html
+# sendinblue
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp-relay.sendinblue.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'zvolsky@seznam.cz'
+EMAIL_HOST_PASSWORD = config.get('sendinblue', 'SMTP-PWD')
+EMAIL_USE_TLS = True
+ADMINS = (('Mirek', 'zvolsky@seznam.cz'), ('admin', 'opentrafficweb.eu@gmail.com'))
+
 X_FRAME_OPTIONS = 'DENY'
 SECURE_HSTS_SECONDS = 300
 SECURE_HSTS_PRELOAD = True
@@ -85,7 +95,7 @@ LOGGING = {
 },
 'loggers': {
     'django': {
-        'handlers': ['console', 'mail_admins', 'console_on_not_debug'],  # 
+        'handlers': ['console', 'mail_admins', 'console_on_not_debug', 'gunicorn'],  # 
         'level': 'INFO',
     },
     'django.server': {

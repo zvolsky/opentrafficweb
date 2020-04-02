@@ -10,7 +10,6 @@ config = RawConfigParser()
 config['DEFAULT'] = {'ALLOWED_HOSTS': '*'}   # toto asi nechodí
 config.read('/etc/django/opentrafficweb/env.ini')
 
-aaa=bbb
 DEBUG = False
 DEBUG_TOOLBAR = False
 

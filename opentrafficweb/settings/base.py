@@ -192,7 +192,9 @@ COMPRESS_PRECOMPILERS = (
     ('text/x-scss', 'django_libsass.SassCompiler'),
 )
 
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+# https://stackoverflow.com/questions/44160666/valueerror-missing-staticfiles-manifest-entry-for-favicon-ico
+#STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+STATICFILES_STORAGE = 'common.storage.WhitenoiseCompressedManifestStaticFilesStorage'
 WHITENOISE_ROOT = os.path.join(DEV_TMP_DIR, 'static', 'root')
 
 MEDIA_URL = '/media/'

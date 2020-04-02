@@ -7,8 +7,11 @@
 {% block content %}
   {{ block.super }}
 
-  Nazdar
+  <div id="time"></div>
+  <div id="lat"></div>
+  <div id="lon"></div>
 {% endblock %}
 
 {% block finaljs %}
+<script src="{% static 'main/js/home.js' %}" defer></script>
 {% endblock %}

@@ -48,7 +48,7 @@ LOGGING = {
             'level': 'DEBUG',
             'class': 'logging.handlers.RotatingFileHandler',
             'formatter': 'verbose',
-            'filename': '/home/www-data/dj/opentrafficweb/opentrafficweb/log/nginx/gunicorn-error.log',
+            'filename': '/home/www-data/dj/opentrafficweb/opentrafficweb/log/gunicorn/error.log',
             'maxBytes': 1024 * 1024 * 32,  # 32 mb
         }
     },

@@ -45,6 +45,7 @@ except ImportError:
 
 GEOIP_PATH = "/usr/share/GeoIP/"    # as long on older Debian (?)
 
+# https://stackoverflow.com/questions/21943962/how-to-see-details-of-django-errors-with-gunicorn
 LOGGING = {
 'version': 1,
 'disable_existing_loggers': False,
@@ -107,7 +108,7 @@ LOGGING = {
 }
 
 '''
-# https://stackoverflow.com/questions/21943962/how-to-see-details-of-django-errors-with-gunicorn
+# https://stackoverflow.com/questions/21943962/how-to-see-details-of-django-errors-with-gunicorn - jinak?
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': True,

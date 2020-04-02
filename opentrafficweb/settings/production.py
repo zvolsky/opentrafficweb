@@ -95,7 +95,7 @@ LOGGING = {
 },
 'loggers': {
     'django': {
-        'handlers': ['console', 'mail_admins', 'console_on_not_debug'],  # , 'gunicorn' (fails)
+        'handlers': ['console', 'mail_admins', 'console_on_not_debug', 'gunicorn'],  # , 'gunicorn' (fails)
         'level': 'INFO',
     },
     'django.server': {

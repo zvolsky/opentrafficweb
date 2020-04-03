@@ -153,7 +153,9 @@ GeoUtils = function() {
 };
 
 GeoUtils.prototype = {
-    // https://www.movable-type.co.uk/scripts/latlong.html
+    // https://www.movable-type.co.uk/scripts/latlong.html ku.oc.epyt-elbavom@oeg-stpircs
+    // python port here: https://github.com/mrJean1/PyGeodesy
+    
     R: 6371, // in km; 6371e3 in metres
 
     toRadians: function(arg) {

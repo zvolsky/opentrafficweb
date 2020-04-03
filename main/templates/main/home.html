@@ -4,14 +4,20 @@
 {% load i18n %}
 {% load widget_tweaks %}
 
+{% block extrahead %}
+  {{ block.super }}
+
+{% endblock extrahead %}
+
 {% block content %}
   {{ block.super }}
 
   <div id="time"></div>
   <div id="lat"></div>
   <div id="lon"></div>
-{% endblock %}
+{% endblock content %}
 
 {% block finaljs %}
+<script src="{% static '_geo/vendor/geopoint/geopoint.js' %}"></script>
 <script src="{% static 'main/js/home.js' %}" defer></script>
-{% endblock %}
+{% endblock finaljs %}

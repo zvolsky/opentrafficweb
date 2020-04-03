@@ -63,6 +63,7 @@ INSTALLED_APPS = [
     'cities_light',
 
     'django_b2',
+    '_geo',
 ]
 
 MIDDLEWARE = [

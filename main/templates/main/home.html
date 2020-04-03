@@ -13,11 +13,22 @@
   {{ block.super }}
 
   <div id="time"></div>
+
   <div id="lat"></div>
   <div id="lon"></div>
+
+  <div id="azimuth"></div>
+  <div id="azimuth_now"></div>
+
+  <div id="speed"></div>
+  <div id="speed_now"></div>
+
+  <div id="duration"></div>
+  <div id="distance"></div>
 {% endblock content %}
 
 {% block finaljs %}
+<script src="{% static '_geo/js/geoutils.js' %}"></script>
 <script src="{% static '_geo/vendor/geopoint/geopoint.js' %}"></script>
 <script src="{% static 'main/js/home.js' %}" defer></script>
 {% endblock finaljs %}

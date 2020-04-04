@@ -83,10 +83,16 @@ PointStack.prototype = {
     },
 
     speed_kmh: function(point) {
+        return Math.round(this.raw_speed_kmh(point) * 10) / 10;
+    },
+    raw_speed_kmh: function(point) {
         return this.speed_ms(point) * 3.6;
     },
 
     azimuth: function(point) {
+        return Math.round(this.raw_azimuth(point));
+    },
+    raw_azimuth: function(point) {
         let points = this.points();
         if (points <= 1) {
             return '*';

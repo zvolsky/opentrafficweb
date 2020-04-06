@@ -1,6 +1,6 @@
 Page_Home = function() {
     this.timeBeat = 250;  // ms
-    this.geoBeat = 15;    // s
+    this.geoBeat = 2;    // s
     this.beatsToGeo = 1000 / this.timeBeat * this.geoBeat
     this.ps = new PointStack();
 };
@@ -28,12 +28,22 @@ Page_Home.prototype = {
         $('#lon').html(point.getLonDeg() + ' ' + lon[1]);
 
         this.ps.push(lat[0], lon[0]);
-        $('#azimuth').html(this.ps.azimuth(0));
-        $('#azimuth_now').html(this.ps.azimuth());
-        $('#speed').html(this.ps.speed_kmh(0));
-        $('#speed_now').html(this.ps.speed_kmh());
-        $('#duration').html(this.ps.sec2hms(this.ps.time_sec(0)));
-        $('#distance').html(this.ps.distance_formatted(0));
+
+        let dist = this.ps.distance(0);
+        let time = this.ps.time_sec(0);
+
+        $('#distance').html(this.ps.distance_formatted(dist));
+        $('#duration').html(this.ps.sec2hms(time));
+        $('#speed_average').html(this.ps.speed_kmh(dist / time));
+
+        if (this.ps.points() > 1) {
+            let start = this.ps.goodStartPointForCalc();
+            dist = this.ps.distance(start);
+            time = this.ps.time_sec(start);
+
+            $('#speed_now').html(this.ps.speed_kmh(dist / time, true));
+            $('#azimuth_now').html(this.ps.azimuth(start));
+        }
     },
     
     getLocation: function() {

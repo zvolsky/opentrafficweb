@@ -19,8 +19,6 @@ PointStack = function() {
 };
 
 PointStack.prototype = {
-    minTimeForSpeed: 3,     // refuse count speed (ei. return 0) if time interval is shorter
-
     clear: function() {
         this.stack = [];
     },
@@ -35,8 +33,7 @@ PointStack.prototype = {
 
     fix_pointPar: function(point) {
         if (typeof point === "undefined") {
-            let points = this.points();
-            return this.goodStartPointForCalc(points)  // give point >33m distant
+            return this.goodStartPointForCalc()  // give point >33m distant
         } else if (point < 0) {
             return Math.max(0, this.points() + point);
         } else {
@@ -52,41 +49,6 @@ PointStack.prototype = {
         point = this.fix_pointPar(point);
         let n = Date.now();
         return Math.round((n - this.stack[point][2]) / 1000);
-    },
-
-    // sec -> n:nn:nn
-    sec2hms: function(sec) {
-        let min = Math.floor(sec/60);
-        sec = sec % 60;
-        if (min >= 60) {
-            return '' + Math.floor(min/60) + ':' + ("0" + (min % 60)).slice(-2) + ':' + ("0" + sec).slice(-2);
-        } else {
-            return '' + min + ':' + ("0" + sec).slice(-2);
-        }
-    },
-
-    // TODO last time -> last points (or index of the starting point)
-
-    // speed from some point to end (backwards if negative, for whole stack if undefined)
-    speed_ms: function(point) {
-        let points = this.points();
-        if (points <= 1) {
-            return 0;
-        }
-        point = this.fix_pointPar(point);
-        let time = this.time_sec(point);
-        if (time < this.minTimeForSpeed) {
-            return 0;
-        }
-        let dist = this._distance(point, points);
-        return dist * 1000 / time;
-    },
-
-    speed_kmh: function(point) {
-        return Math.round(this.raw_speed_kmh(point) * 10) / 10;
-    },
-    raw_speed_kmh: function(point) {
-        return this.speed_ms(point) * 3.6;
     },
 
     azimuth: function(point) {
@@ -108,12 +70,11 @@ PointStack.prototype = {
         return this.getGU().azimuth(start[0], start[1], stop[0], stop[1])
     },
 
-    distance_formatted: function(point) {
-        let dist = this.distance(point);
-        if (dist < 1) {
-            return '' + Math.round(dist * 1000) + ' m';
+    distance_formatted: function(dist) {
+        if (dist < 1000) {
+            return '' + Math.round(dist) + ' m';
         } else {
-            return '' + Math.round(dist * 100) / 100 + ' km'
+            return '' + Math.round(dist / 10) / 100 + ' km'
         }
     },
 
@@ -123,10 +84,10 @@ PointStack.prototype = {
             return 0;
         }
         point = this.fix_pointPar(point);
-        return this._distance(point, points);
+        return this.raw_distance(point, points);
     },
 
-    _distance: function(point, points) {
+    raw_distance: function(point, points) {
         var distance = 0;
         var previous_step = 0;
         for (let i = point; i < points - 1; i++) {
@@ -146,13 +107,14 @@ PointStack.prototype = {
                 }
             }
 
-            let previous_step = step;
+            previous_step = step;
             make_correction = true;
         }
         return distance;
     },
 
-    goodStartPointForCalc: function(points) {
+    goodStartPointForCalc: function() {
+        let points = this.points();
         let stop = this.stack[points - 1];
         let absLat = Math.abs(stop[0]);
         let lonCoef = (90 - absLat) / 60;  // multiply longitude Δ to get better estimate with regard to latitude
@@ -166,6 +128,31 @@ PointStack.prototype = {
             }
         }
         return 0;
+    },
+
+    //conversions
+    
+    // sec -> n:nn:nn
+    sec2hms: function(sec) {
+        let min = Math.floor(sec/60);
+        sec = sec % 60;
+        if (min >= 60) {
+            return '' + Math.floor(min/60) + ':' + ("0" + (min % 60)).slice(-2) + ':' + ("0" + sec).slice(-2);
+        } else {
+            return '' + min + ':' + ("0" + sec).slice(-2);
+        }
+    },
+
+    speed_kmh: function(speed_ms, str_with_unit_kmh) {
+        let speed = Math.round(this.raw_speed_kmh(speed_ms) * 10) / 10;
+        if (str_with_unit_kmh) {
+            return '' + speed + ' km/h';
+        } else {
+            return speed;
+        }
+    },
+    raw_speed_kmh: function(speed_ms) {
+        return speed_ms * 3.6;
     },
 
     // property behaviour for this.gu
@@ -187,7 +174,7 @@ GeoUtils.prototype = {
     // https://www.movable-type.co.uk/scripts/latlong.html ku.oc.epyt-elbavom@oeg-stpircs
     // python port here: https://github.com/mrJean1/PyGeodesy
     
-    R: 6371, // in km; 6371e3 in metres
+    R: 6371e3,   // ..e3: in meters
 
     toRadians: function(arg) {
         return arg * Math.PI / 180;

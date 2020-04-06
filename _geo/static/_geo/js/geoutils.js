@@ -90,7 +90,7 @@ PointStack.prototype = {
     },
 
     azimuth: function(point) {
-        return Math.round(this.raw_azimuth(point));
+        return '' + Math.round(this.raw_azimuth(point)) + '°';
     },
     raw_azimuth: function(point) {
         let points = this.points();
@@ -106,7 +106,7 @@ PointStack.prototype = {
     distance_formatted: function(point) {
         let dist = this.distance(point);
         if (dist < 1) {
-            return '' + Math.round(dist / 1000) + ' m';
+            return '' + Math.round(dist * 1000) + ' m';
         } else {
             return '' + Math.round(dist * 100) / 100 + ' km'
         }
@@ -122,9 +122,29 @@ PointStack.prototype = {
     },
 
     _distance: function(point, points) {
-        let start = this.stack[point];
-        let stop = this.stack[points - 1];
-        return this.getGU().distance(start[0], start[1], stop[0], stop[1]);
+        let distance = 0;
+        let previous_step = 0;
+        for (let i = point; i < points - 1; i++) {
+            // basic
+            let start = this.stack[i];
+            let stop = this.stack[i+1];
+            let step = this.getGU().distance_era(start[0], start[1], stop[0], stop[1]);
+            distance += step;
+
+            // correction
+            if (previous_step > 0) {
+                let start = this.stack[i-1];
+                let s1 = this.getGU().distance_era(start[0], start[1], stop[0], stop[1]);
+                let s2 = previous_step + step;
+                if (s1) {
+                    distance += (s2 / s1 - 1) * s1;
+                }
+            }
+
+            let previous_step = step;
+            make_correction = true;
+        }
+        return distance;
     },
 
     goodStartPointForCalc: function(points) {

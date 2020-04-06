@@ -90,12 +90,17 @@ PointStack.prototype = {
     },
 
     azimuth: function(point) {
-        return '' + Math.round(this.raw_azimuth(point)) + '°';
+        let az = this.raw_azimuth(point);
+        if (az === undefined) {
+            return '*';
+        } else {
+            return '' + Math.round(this.raw_azimuth(point)) + '°';
+        }
     },
     raw_azimuth: function(point) {
         let points = this.points();
         if (points <= 1) {
-            return '*';
+            return undefined;
         }
         point = this.fix_pointPar(point);
         let start = this.stack[point];
@@ -122,8 +127,8 @@ PointStack.prototype = {
     },
 
     _distance: function(point, points) {
-        let distance = 0;
-        let previous_step = 0;
+        var distance = 0;
+        var previous_step = 0;
         for (let i = point; i < points - 1; i++) {
             // basic
             let start = this.stack[i];

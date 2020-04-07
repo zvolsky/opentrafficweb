@@ -34,16 +34,19 @@ Page_Home.prototype = {
 
         $('#distance').html(this.ps.distance_formatted(dist));
         $('#duration').html(this.ps.sec2hms(time));
-        $('#speed_average').html(this.ps.speed_kmh(dist / time));
 
         if (this.ps.points() > 1) {
             let start = this.ps.goodStartPointForCalc();
             dist = this.ps.distance(start);
             time = this.ps.time_sec(start);
 
+            $('#speed_average').html(this.ps.speed_kmh(dist / time, true));
             $('#speed_now').html(this.ps.speed_kmh(dist / time, true));
             $('#azimuth_now').html(this.ps.azimuth(start));
         }
+
+        $('#accuracy').html(position.coords.accuracy);
+        $('#speed').html(position.coords.speed);
     },
     
     getLocation: function() {

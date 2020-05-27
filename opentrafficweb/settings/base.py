@@ -119,7 +119,7 @@ WSGI_APPLICATION = 'opentrafficweb.wsgi.application'
 
 dbname = __package__.rsplit('.')[-2]
 # postgres: missing or SQLITE=   ; sqlite: SQLITE=True, Yes, atp.
-if os.environ.get('MZ_SQLITE') or bool(config.get('main', 'SQLITE')):
+if os.environ.get('MZ_SQLITE') or bool(config.get('main', 'SQLITE')):  # hint if "no section.." -> chmod 644 env.ini
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',
